@@ -3,245 +3,494 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bakes Delight — Breakfast, Panini &amp; Shawarma</title>
-<meta name="description" content="Bakes Delight menu and prices: breakfast wraps, Turkish panini, shawarma boxes, grilled chicken kebab, burgers, pasta, milkshakes and more.">
+<title>Bakes Delight | Breakfast, Panini &amp; Shawarma</title>
+<meta name="description" content="Bakes Delight: breakfast wraps, homemade Turkish-bread panini, chicken &amp; lamb shawarma, grilled chicken kebab, burgers, pasta and milkshakes. Full menu and prices.">
+<meta property="og:title" content="Bakes Delight">
+<meta property="og:description" content="Big breakfasts, Turkish-bread panini and proper shawarma, made fresh to order.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1200&q=70&auto=format&fit=crop">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cobalt: #1B3A9E;
-    --cobalt-deep: #12286F;
-    --yolk: #FFC93C;
-    --chilli: #E2412B;
-    --tile: #F4F6FB;
-    --ink: #14183A;
-    --muted: #5A6080;
-    --line: #D5DAEA;
+    --cobalt: #1D3FAE;
+    --cobalt-deep: #142C7C;
+    --navy: #10173F;
+    --yolk: #FFC633;
+    --yolk-soft: #FFE7A3;
+    --chilli: #E3432A;
+    --paper: #FFFDF8;
+    --tile: #EEF1FA;
+    --muted: #535B82;
     --display: "Bricolage Grotesque", system-ui, sans-serif;
     --body: "Instrument Sans", system-ui, sans-serif;
+    --hard: 6px 6px 0 var(--navy);
+    --hard-sm: 4px 4px 0 var(--navy);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-  body { margin: 0; background: var(--tile); color: var(--ink); font: 400 1.0625rem/1.55 var(--body); }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--navy); font: 400 1.0625rem/1.55 var(--body); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
   a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--yolk); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 3px solid var(--chilli); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .display { font-family: var(--display); font-weight: 800; font-variation-settings: "wdth" 80; letter-spacing: -.025em; line-height: .9; margin: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; font: 700 1.02rem/1 var(--body); text-decoration: none; padding: 16px 26px; border-radius: 999px; border: 2.5px solid var(--navy); box-shadow: var(--hard-sm); transition: transform .15s, box-shadow .15s; cursor: pointer; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--navy); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--navy); }
+  .btn-yolk { background: var(--yolk); color: var(--navy); }
+  .btn-white { background: #fff; color: var(--navy); }
+  .btn-chilli { background: var(--chilli); color: #fff; }
+
+  /* ---------- Header ---------- */
+  .header { position: sticky; top: 0; z-index: 50; background: var(--cobalt); border-bottom: 2.5px solid var(--navy); }
+  .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+  .logo-mark { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: grid; place-items: center; border: 2.5px solid var(--navy); }
+  .logo-mark::after { content: ""; width: 18px; height: 18px; border-radius: 50%; background: var(--yolk); box-shadow: inset -3px -3px 0 #F2A81D; }
+  .logo b { font: 800 1.35rem/1 var(--display); font-variation-settings: "wdth" 85; letter-spacing: -.01em; }
+  .logo b span { color: var(--yolk); }
+  .nav { display: flex; align-items: center; gap: 6px; }
+  .nav a { color: #fff; text-decoration: none; font-weight: 600; padding: 10px 14px; border-radius: 999px; }
+  .nav a:hover { background: rgba(255,255,255,.12); }
+  .nav .btn { padding: 11px 20px; margin-left: 8px; }
 
   /* ---------- Hero ---------- */
-  .hero {
-    position: relative; overflow: hidden; color: #fff; background: var(--cobalt);
-    padding: 28px 24px 0;
-  }
-  .hero::before { /* tile pattern */
-    content: ""; position: absolute; inset: 0; opacity: .16; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='M44 6c10 14 24 24 38 38-14 14-28 24-38 38C34 68 20 58 6 44 20 30 34 20 44 6z'/%3E%3Ccircle cx='44' cy='44' r='9'/%3E%3Cpath d='M0 0l14 14M88 0L74 14M0 88l14-14M88 88L74 74'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 88px 88px;
-  }
-  .topbar { position: relative; display: flex; justify-content: space-between; align-items: center; max-width: 1180px; margin: 0 auto; }
-  .logo { font: 800 1.25rem/1 var(--display); letter-spacing: -.01em; text-decoration: none; }
-  .logo span { color: var(--yolk); }
-  .topbar a.btn-sm { font-weight: 600; text-decoration: none; padding: 10px 18px; border-radius: 999px; background: #fff; color: var(--cobalt); }
-  .hero-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 72px 0 0; }
-  .hero h1 {
-    margin: 0; color: var(--yolk);
-    font: 800 clamp(4.2rem, 15vw, 13.5rem)/.82 var(--display);
-    font-variation-settings: "wdth" 78; letter-spacing: -.035em;
-  }
-  .hero h1 .l2 { display: block; color: #fff; padding-left: .55em; }
-  .hero p.lede { max-width: 34ch; margin: 36px 0 0; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: #E4E9FA; }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-  .btn { display: inline-block; font: 600 1.05rem/1 var(--body); text-decoration: none; padding: 17px 26px; border-radius: 999px; }
-  .btn-yolk { background: var(--yolk); color: var(--ink); }
-  .btn-ghost { border: 2px solid rgba(255,255,255,.5); color: #fff; }
-  .yolk {
-    position: absolute; right: -60px; top: 150px; width: min(46vw, 520px); aspect-ratio: 1;
-    border-radius: 50%; background: radial-gradient(circle at 38% 36%, #FFE08A 0 18%, var(--yolk) 46%, #F5A623 100%);
-    box-shadow: 0 0 0 clamp(26px, 5vw, 60px) #fff;
-    transform: rotate(-8deg);
-  }
-  .yolk::after { content: ""; position: absolute; left: 24%; top: 22%; width: 16%; height: 10%; border-radius: 50%; background: rgba(255,255,255,.65); transform: rotate(-30deg); }
-  .perks { position: relative; display: flex; flex-wrap: wrap; gap: 10px 28px; max-width: 1180px; margin: 92px auto 0; padding: 22px 0 26px; border-top: 1px solid rgba(255,255,255,.25); font-weight: 500; color: #E4E9FA; }
-  .perks b { color: var(--yolk); font-weight: 600; }
+  .hero { position: relative; background: var(--cobalt); color: #fff; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; opacity: .13; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='M48 8c11 15 25 26 40 40-15 14-29 25-40 40C37 73 23 62 8 48 23 34 37 23 48 8z'/%3E%3Ccircle cx='48' cy='48' r='10'/%3E%3Cpath d='M0 0l16 16M96 0L80 16M0 96l16-16M96 96L80 80'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 96px 96px; }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; padding-top: 72px; padding-bottom: 96px; }
+  .hero h1 { font-size: clamp(3.4rem, 7.6vw, 7.2rem); color: #fff; }
+  .hero h1 .y { color: var(--yolk); display: block; }
+  .hero h1 .outline { display: block; color: transparent; -webkit-text-stroke: 2.5px #fff; }
+  .hero .lede { max-width: 32ch; margin: 28px 0 0; font-size: clamp(1.12rem, 1.6vw, 1.3rem); color: #DCE3FA; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+  .hero-tags span { font-weight: 600; font-size: .92rem; padding: 7px 14px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.4); color: #fff; }
 
-  /* ---------- Category nav ---------- */
-  .catnav { position: sticky; top: 0; z-index: 10; background: var(--tile); border-bottom: 1px solid var(--line); }
-  .catnav ul { list-style: none; display: flex; gap: 6px; margin: 0 auto; padding: 12px 24px; max-width: 1228px; overflow-x: auto; scrollbar-width: none; }
-  .catnav ul::-webkit-scrollbar { display: none; }
-  .catnav a { display: block; white-space: nowrap; padding: 9px 16px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .95rem; color: var(--cobalt); }
-  .catnav a:hover { background: #E3E8F7; }
-  .catnav a.active { background: var(--cobalt); color: #fff; }
+  .hero-photo { position: relative; justify-self: end; width: min(100%, 540px); }
+  .hero-photo .frame { aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; border: 3px solid var(--navy); box-shadow: 12px 12px 0 var(--navy); transform: rotate(2.5deg); background: #2a3f8f; }
+  .hero-photo .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+  .sticker { position: absolute; display: grid; place-items: center; text-align: center; border-radius: 50%; border: 3px solid var(--navy); font-family: var(--display); font-weight: 800; line-height: .95; box-shadow: var(--hard-sm); }
+  .hero-photo .s1 { width: 150px; height: 150px; left: -48px; bottom: 56px; background: var(--yolk); color: var(--navy); transform: rotate(-12deg); font-size: 1rem; }
+  .hero-photo .s1 strong { display: block; font-size: 2.6rem; letter-spacing: -.03em; }
+  .hero-photo .s2 { width: 128px; height: 128px; right: -26px; top: -30px; background: var(--chilli); color: #fff; transform: rotate(10deg); font-size: 1.02rem; padding: 14px; }
+  .photo-tag { position: absolute; left: 22px; top: 22px; transform: rotate(2.5deg); background: #fff; color: var(--navy); font-weight: 700; font-size: .88rem; padding: 7px 13px; border-radius: 999px; border: 2px solid var(--navy); }
+
+  /* ---------- Ticker ---------- */
+  .ticker { background: var(--chilli); color: #fff; border-block: 2.5px solid var(--navy); overflow: hidden; white-space: nowrap; }
+  .ticker-track { display: inline-flex; gap: 0; padding: 15px 0; animation: tick 38s linear infinite; }
+  .ticker-track span { font: 800 1.35rem/1 var(--display); font-variation-settings: "wdth" 82; letter-spacing: -.01em; padding: 0 22px; display: inline-flex; align-items: center; gap: 44px; }
+  .ticker-track span::after { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--yolk); border: 2px solid var(--navy); }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* ---------- Section heads ---------- */
+  .sec { padding: 112px 0; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px 48px; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(2.8rem, 6.4vw, 5.6rem); }
+  .sec-head p { max-width: 38ch; margin: 0; color: var(--muted); font-size: 1.1rem; }
+
+  /* ---------- Favourites ---------- */
+  .favs { background: var(--yolk); border-bottom: 2.5px solid var(--navy); }
+  .favs .sec-head h2 { color: var(--navy); }
+  .favs .sec-head p { color: #5A4300; }
+  .fav-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+  .fav { position: relative; background: var(--paper); border: 2.5px solid var(--navy); border-radius: 22px; box-shadow: var(--hard); padding: 12px 12px 20px; display: flex; flex-direction: column; }
+  .fav:nth-child(odd) { transform: rotate(-1.2deg); }
+  .fav:nth-child(even) { transform: rotate(1.2deg) translateY(18px); }
+  .fav .ph { aspect-ratio: 1; border-radius: 14px; overflow: hidden; border: 2px solid var(--navy); background: var(--tile); }
+  .fav .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .fav:hover .ph img { transform: scale(1.06); }
+  .fav h3 { font: 800 1.55rem/1 var(--display); font-variation-settings: "wdth" 85; letter-spacing: -.015em; margin: 18px 6px 8px; }
+  .fav p { margin: 0 6px; font-size: .96rem; color: var(--muted); flex: 1; }
+  .fav .price { position: absolute; top: -16px; right: -12px; background: var(--chilli); color: #fff; font: 800 1.15rem/1 var(--display); padding: 10px 14px; border-radius: 999px; border: 2.5px solid var(--navy); transform: rotate(6deg); }
+  .fav .price small { font: 600 .78rem/1 var(--body); display: block; margin-bottom: 2px; }
+
+  /* ---------- Made fresh ---------- */
+  .fresh { background: var(--paper); }
+  .fresh-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 28px; }
+  .fresh-card { border-radius: 26px; overflow: hidden; border: 2.5px solid var(--navy); background: var(--tile); position: relative; min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; }
+  .fresh-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .fresh-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,23,63,0) 35%, rgba(16,23,63,.88) 100%); }
+  .fresh-card .txt { position: relative; z-index: 1; padding: 28px; }
+  .fresh-card h3 { font: 800 clamp(1.7rem, 2.6vw, 2.3rem)/.95 var(--display); font-variation-settings: "wdth" 82; letter-spacing: -.02em; margin: 0 0 10px; }
+  .fresh-card p { margin: 0; color: #E6EAFB; max-width: 34ch; }
 
   /* ---------- Menu ---------- */
-  main { max-width: 1180px; margin: 0 auto; padding: 24px 24px 40px; }
-  .section { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 64px; padding: 64px 0; border-bottom: 1px solid var(--line); }
-  .section:last-child { border-bottom: 0; }
-  .sec-head h2 { margin: 0; font: 800 clamp(2.2rem, 4.4vw, 3.4rem)/.95 var(--display); font-variation-settings: "wdth" 85; letter-spacing: -.02em; color: var(--cobalt); }
-  .sec-head p { margin: 16px 0 0; color: var(--muted); max-width: 38ch; }
-  .extras { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .extra { font-size: .9rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; background: #FFF1C7; color: #6B4A00; }
-  .sec-head { position: sticky; top: 90px; align-self: start; }
+  .menu { background: var(--cobalt); color: #fff; border-block: 2.5px solid var(--navy); position: relative; }
+  .menu .sec-head h2 { color: #fff; }
+  .menu .sec-head p { color: #CFD8F8; }
+  .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 4px 4px 14px; margin: 0 -4px 30px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.3) transparent; }
+  .tab { flex: none; font: 700 1rem/1 var(--body); padding: 13px 20px; border-radius: 999px; border: 2.5px solid var(--navy); background: #fff; color: var(--navy); cursor: pointer; box-shadow: 3px 3px 0 var(--navy); }
+  .tab[aria-selected="true"] { background: var(--yolk); }
+  .tab:hover { transform: translate(-1px, -1px); }
 
-  .items { width: 100%; border-collapse: collapse; }
-  .items th { text-align: right; font: 600 .85rem/1 var(--body); color: var(--muted); padding: 0 0 12px 16px; white-space: nowrap; }
-  .items th:first-child { text-align: left; padding-left: 0; }
-  .items td { padding: 15px 0 15px 16px; border-top: 1px solid var(--line); vertical-align: top; }
-  .items td:first-child { padding-left: 0; }
-  .items .name { font-weight: 600; font-size: 1.08rem; }
-  .items .desc { display: block; font-size: .95rem; color: var(--muted); margin-top: 3px; max-width: 46ch; }
-  .items .price { text-align: right; white-space: nowrap; font: 700 1.12rem/1.3 var(--display); font-variant-numeric: tabular-nums; color: var(--ink); width: 4.5em; }
-  .items .na { color: #B4BAD0; font-weight: 400; }
-  .subhead { margin: 34px 0 10px; font: 700 1.3rem/1 var(--display); color: var(--ink); }
+  .panel { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 36px; background: var(--paper); color: var(--navy); border: 2.5px solid var(--navy); border-radius: 28px; box-shadow: 10px 10px 0 var(--navy); padding: 24px; }
+  .panel[hidden] { display: none; }
+  .panel-side { display: flex; flex-direction: column; gap: 20px; }
+  .panel-img { aspect-ratio: 5 / 4; border-radius: 18px; overflow: hidden; border: 2px solid var(--navy); background: var(--tile); }
+  .panel-img img { width: 100%; height: 100%; object-fit: cover; }
+  .panel-side h3 { font: 800 clamp(2rem, 3.6vw, 3rem)/.92 var(--display); font-variation-settings: "wdth" 82; letter-spacing: -.02em; margin: 4px 4px 0; }
+  .panel-side p { margin: 0 4px; color: var(--muted); }
+  .extras { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 4px; }
+  .extra { font-size: .9rem; font-weight: 700; padding: 7px 13px; border-radius: 999px; background: var(--yolk-soft); border: 2px solid var(--navy); }
+
+  .rows { padding: 10px 8px 6px 0; }
+  .rows-head { display: grid; grid-template-columns: 1fr repeat(var(--cols), 5.2rem); gap: 10px; font-weight: 700; font-size: .86rem; color: var(--muted); padding: 0 0 10px; border-bottom: 2.5px solid var(--navy); }
+  .rows-head span:not(:first-child) { text-align: center; }
+  .row { display: grid; grid-template-columns: 1fr repeat(var(--cols), 5.2rem); gap: 10px; align-items: center; padding: 15px 0; border-bottom: 1.5px dashed #C3CAE3; }
+  .row:last-child { border-bottom: 0; }
+  .row .nm { font-weight: 700; font-size: 1.06rem; line-height: 1.3; }
+  .row .ds { display: block; font-weight: 400; font-size: .93rem; color: var(--muted); margin-top: 2px; }
+  .pill { justify-self: center; font: 800 1.06rem/1 var(--display); font-variant-numeric: tabular-nums; padding: 8px 10px; border-radius: 10px; background: var(--tile); min-width: 4.6rem; text-align: center; }
+  .pill.span { grid-column: span var(--cols); justify-self: end; background: var(--yolk-soft); }
+  .pill.na { background: none; color: #B3BAD3; font-weight: 400; }
+  .subhead { font: 800 1.5rem/1 var(--display); font-variation-settings: "wdth" 85; margin: 30px 0 12px; }
   .subhead:first-child { margin-top: 0; }
 
-  .drinks-list { display: grid; gap: 0; }
-  .drink { padding: 18px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; }
-  .drink .name { font-weight: 600; font-size: 1.08rem; }
-  .drink .price { font: 700 1.12rem/1.3 var(--display); }
-  .drink .chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-  .drink .chips span { font-size: .88rem; padding: 4px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+  .drinks-grid { display: grid; gap: 18px; }
+  .drink-card { border: 2px solid var(--navy); border-radius: 18px; padding: 18px 20px; background: #fff; }
+  .drink-card header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .drink-card h4 { margin: 0; font: 800 1.3rem/1.1 var(--display); font-variation-settings: "wdth" 85; }
+  .drink-card .pill { background: var(--yolk); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .chips span { font-size: .9rem; font-weight: 500; padding: 5px 11px; border-radius: 999px; background: var(--tile); }
+
+  /* ---------- Shakes band ---------- */
+  .shakes { background: var(--paper); }
+  .shakes .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .shake-photo { position: relative; }
+  .shake-photo .frame { aspect-ratio: 4 / 5; border-radius: 200px 200px 28px 28px; overflow: hidden; border: 3px solid var(--navy); box-shadow: 12px 12px 0 var(--chilli), 12px 12px 0 2.5px var(--navy); background: var(--tile); max-width: 460px; }
+  .shake-photo .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .shake-photo .sticker { width: 138px; height: 138px; right: 4%; bottom: 40px; background: var(--yolk); transform: rotate(-10deg); font-size: .95rem; }
+  .shake-photo .sticker strong { display: block; font-size: 2.1rem; }
+  .shakes h2 { font-size: clamp(2.8rem, 6vw, 5.2rem); }
+  .shakes h2 span { color: var(--chilli); }
+  .flavours { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 12px; }
+  .flavours li { display: flex; align-items: center; gap: 14px; font: 800 clamp(1.4rem, 2.4vw, 1.9rem)/1 var(--display); font-variation-settings: "wdth" 85; letter-spacing: -.015em; padding-bottom: 12px; border-bottom: 2px solid var(--navy); }
+  .flavours li i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--navy); flex: none; }
+  .shake-prices { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .shake-prices div { border: 2.5px solid var(--navy); border-radius: 16px; padding: 12px 18px; background: #fff; box-shadow: var(--hard-sm); }
+  .shake-prices b { display: block; font: 800 1.6rem/1 var(--display); }
+  .shake-prices small { font-weight: 600; color: var(--muted); }
+
+  /* ---------- Visit ---------- */
+  .visit { background: var(--navy); color: #fff; }
+  .visit .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+  .visit-photo { aspect-ratio: 4 / 5; max-width: 460px; border-radius: 28px; overflow: hidden; border: 3px solid var(--yolk); background: #1d2860; }
+  .visit-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .visit h2 { font-size: clamp(2.8rem, 6vw, 5.2rem); color: var(--yolk); }
+  .visit .lede { color: #C9D1F2; max-width: 40ch; margin: 22px 0 36px; font-size: 1.12rem; }
+  .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .info div { border: 2px solid rgba(255,255,255,.22); border-radius: 18px; padding: 18px 20px; }
+  .info h3 { margin: 0 0 6px; font: 700 .95rem/1.2 var(--body); color: var(--yolk); }
+  .info p { margin: 0; color: #fff; font-weight: 500; }
+  .info .todo { color: #8E99C9; font-style: italic; font-weight: 500; }
+  .visit .hero-ctas { margin-top: 30px; }
 
   /* ---------- Footer ---------- */
-  footer { background: var(--cobalt-deep); color: #D7DDF5; padding: 64px 24px 40px; }
-  .foot { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: end; }
-  .foot h2 { margin: 0; color: #fff; font: 800 clamp(2.4rem, 6vw, 4.5rem)/.9 var(--display); font-variation-settings: "wdth" 80; letter-spacing: -.03em; }
-  .foot h2 span { color: var(--yolk); }
-  .foot p { margin: 14px 0 0; max-width: 40ch; }
-  .foot small { display: block; max-width: 1180px; margin: 48px auto 0; color: #93A0CF; }
+  footer { background: var(--cobalt-deep); color: #C9D1F2; padding: 72px 0 36px; border-top: 2.5px solid var(--navy); overflow: hidden; }
+  .foot-word { font: 800 clamp(4rem, 15vw, 14rem)/.8 var(--display); font-variation-settings: "wdth" 75; letter-spacing: -.04em; color: var(--yolk); margin: 0 0 40px; white-space: nowrap; }
+  .foot-word span { color: transparent; -webkit-text-stroke: 2px #fff; }
+  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; font-size: .92rem; border-top: 1px solid rgba(255,255,255,.18); padding-top: 22px; }
+  .foot-row a { color: #fff; }
 
-  @media (max-width: 860px) {
-    .section { grid-template-columns: 1fr; padding: 48px 0; }
-    .sec-head { position: static; }
-    .yolk { width: 56vw; right: -22vw; top: 110px; }
-    .hero h1 .l2 { padding-left: .3em; }
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1020px) {
+    .fav-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
+    .fresh-grid { grid-template-columns: 1fr 1fr; }
+    .fresh-grid .fresh-card:first-child { grid-column: 1 / -1; min-height: 360px; }
   }
-  @media (max-width: 520px) {
-    .hero { padding: 20px 16px 0; }
-    main { padding: 8px 16px 32px; }
-    .catnav ul { padding: 10px 16px; }
-    .items .price { width: 3.8em; font-size: 1.02rem; }
-    .items td, .items th { padding-left: 10px; }
-    .yolk { top: 104px; width: 50vw; right: -24vw; }
-    .hero-inner { padding-top: 140px; }
+  @media (max-width: 860px) {
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 64px; padding-top: 48px; padding-bottom: 80px; }
+    .hero-photo { justify-self: center; width: min(88%, 460px); }
+    .panel { grid-template-columns: 1fr; }
+    .panel-img { aspect-ratio: 16 / 9; }
+    .shakes .wrap, .visit .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .shake-photo .frame, .visit-photo { margin: 0 auto; width: 88%; }
+    .visit-photo { aspect-ratio: 16 / 11; max-width: none; width: 100%; }
+    .sec { padding: 80px 0; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .header .wrap { height: 64px; }
+    .logo b { font-size: 1.2rem; }
+    .nav .btn { padding: 10px 15px; font-size: .92rem; margin: 0; }
+    .hero-photo .s1 { width: 116px; height: 116px; left: -22px; bottom: 30px; font-size: .85rem; }
+    .hero-photo .s1 strong { font-size: 2rem; }
+    .hero-photo .s2 { width: 90px; height: 90px; right: -14px; top: -20px; font-size: .85rem; }
+    .fav-grid { grid-template-columns: 1fr; gap: 34px; }
+    .fav:nth-child(even) { transform: rotate(1deg); }
+    .fresh-grid { grid-template-columns: 1fr; }
+    .fresh-card { min-height: 340px; }
+    .panel { padding: 14px; gap: 22px; box-shadow: 6px 6px 0 var(--navy); border-radius: 22px; }
+    .rows-head, .row { grid-template-columns: 1fr repeat(var(--cols), 4.1rem); gap: 6px; }
+    .pill { min-width: 3.9rem; font-size: .98rem; padding: 7px 6px; }
+    .info { grid-template-columns: 1fr; }
+    .sec-head { margin-bottom: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+    .btn, .fav .ph img { transition: none; }
+    html { scroll-behavior: auto; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .hero h1 span { display: inline-block; animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
-    .hero h1 .l2 { animation-delay: .12s; }
-    .yolk { animation: drop 1s cubic-bezier(.3,1.4,.5,1) .2s both; }
-    @keyframes rise { from { transform: translateY(40%); opacity: 0; } }
-    @keyframes drop { from { transform: translateY(-120%) rotate(-40deg); } }
+    .hero h1 > span { display: block; animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+    .hero h1 > span:nth-child(2) { animation-delay: .08s; }
+    .hero h1 > span:nth-child(3) { animation-delay: .16s; }
+    .hero-photo .frame { animation: land .8s cubic-bezier(.3,1.3,.5,1) .15s both; }
+    .hero-photo .sticker { animation: pop .5s cubic-bezier(.3,1.6,.5,1) .7s both; }
+    @keyframes rise { from { transform: translateY(35%); opacity: 0; } }
+    @keyframes land { from { transform: rotate(10deg) translateY(40px); opacity: 0; } }
+    @keyframes pop { from { scale: 0; } }
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="topbar">
-    <a class="logo" href="#top">Bakes<span>Delight</span></a>
-    <a class="btn-sm" href="#menu">Menu &amp; prices</a>
-  </div>
-  <div class="yolk" aria-hidden="true"></div>
-  <div class="hero-inner" id="top">
-    <h1><span>Bakes</span> <span class="l2">Delight</span></h1>
-    <p class="lede">Breakfast wraps, Turkish-bread panini, shawarma and grilled chicken kebab, cooked fresh to order.</p>
-    <div class="hero-actions">
-      <a class="btn btn-yolk" href="#breakfasts">See breakfasts</a>
-      <a class="btn btn-ghost" href="#menu">Full menu</a>
-    </div>
-  </div>
-  <div class="perks">
-    <div>Make it a meal <b>+£2.50</b></div>
-    <div>Extra cheese <b>+£0.50</b></div>
-    <div>All cold drinks <b>£1.00</b></div>
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Bakes Delight home"><span class="logo-mark" aria-hidden="true"></span><b>Bakes<span>Delight</span></b></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#favourites">Favourites</a>
+      <a href="#menu">Menu</a>
+      <a href="#shakes">Milkshakes</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn-yolk" href="#menu">See prices</a>
+    </nav>
   </div>
 </header>
 
-<nav class="catnav" aria-label="Menu sections"><ul id="catlinks"></ul></nav>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1 class="display">
+        <span>Big breakfasts.</span>
+        <span class="y">Proper shawarma.</span>
+        <span class="outline">Made fresh.</span>
+      </h1>
+      <p class="lede">Breakfast wraps, homemade Turkish-bread panini and chicken marinated in Turkish sauce, cooked on the grill while you wait.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-yolk" href="#menu">See the full menu</a>
+        <a class="btn btn-white" href="#visit">Find us</a>
+      </div>
+      <div class="hero-tags" aria-label="What we serve">
+        <span>Breakfast</span><span>Panini</span><span>Wraps</span><span>Shawarma</span><span>Kebab</span><span>Milkshakes</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1100&q=72&auto=format&fit=crop" alt="Close-up of a shawarma wrap filled with grilled meat, chips and red onion" width="1100" height="1375" fetchpriority="high">
+      </div>
+      <span class="photo-tag">Chicken shawarma wrap</span>
+      <div class="sticker s1"><div>wraps from<strong>£5</strong></div></div>
+      <div class="sticker s2">Make it a meal +£2.50</div>
+    </div>
+  </div>
+</section>
 
-<main id="menu"></main>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<section class="sec favs" id="favourites" aria-labelledby="favs-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display" id="favs-h">Crowd<br>favourites</h2>
+      <p>Not sure what to get? Start with one of these.</p>
+    </div>
+    <div class="fav-grid">
+      <article class="fav">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1768634003098-9d5848d3b93f?w=700&q=70&auto=format&fit=crop&crop=entropy&h=700" alt="Breakfast plate with eggs, sausages and beans" width="700" height="700"></div>
+        <h3>Full Breakfast</h3>
+        <p>Grilled eggs, sausages, cheese, hash brown, beans, egg &amp; toast.</p>
+        <span class="price">£7.00</span>
+      </article>
+      <article class="fav">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1670165088604-5a39f5c1be51?w=700&q=70&auto=format&fit=crop&h=700" alt="Grilled chicken with couscous and vegetables" width="700" height="700"></div>
+        <h3>Chicken Grilled Kebab &amp; Couscous</h3>
+        <p>Chicken breast marinated in Turkish sauce, grilled with your choice of veggies.</p>
+        <span class="price"><small>from</small>£7.00</span>
+      </article>
+      <article class="fav">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1562059390-a761a084768e?w=700&q=70&auto=format&fit=crop&h=700" alt="Wraps filled with grilled chicken and salad, with dipping sauces" width="700" height="700"></div>
+        <h3>Chicken Shawarma Wrap</h3>
+        <p>12" tortilla with your choice of salad, veggies &amp; sauce.</p>
+        <span class="price">£5.00</span>
+      </article>
+      <article class="fav">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1757834787931-ddd70f3379a5?w=700&q=70&auto=format&fit=crop&h=700" alt="Cheeseburger with lettuce and tomato" width="700" height="700"></div>
+        <h3>Chicken Burger with Cheese &amp; Hash Brown</h3>
+        <p>Go single or double, and make it a meal for +£2.50.</p>
+        <span class="price"><small>from</small>£4.50</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec fresh" aria-labelledby="fresh-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display" id="fresh-h">Made here,<br>every day</h2>
+      <p>Pick your veggies, salad and sauce at the counter and we make it to order.</p>
+    </div>
+    <div class="fresh-grid">
+      <div class="fresh-card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1786412691936-ee19320efb5a?w=1000&q=70&auto=format&fit=crop" alt="Toasted panini sandwich" width="1000" height="750">
+        <div class="txt"><h3>Homemade Turkish bread</h3><p>Every panini starts with our own Turkish bread, pressed hot on the grill.</p></div>
+      </div>
+      <div class="fresh-card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1680990999782-ba7fe26e4d0b?w=800&q=70&auto=format&fit=crop" alt="Falafel with salad" width="800" height="650">
+        <div class="txt"><h3>Rice &amp; couscous, fresh daily</h3><p>Made every morning and suitable for vegetarians.</p></div>
+      </div>
+      <div class="fresh-card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800&q=70&auto=format&fit=crop" alt="Penne pasta in tomato sauce" width="800" height="530">
+        <div class="txt"><h3>Homemade pasta sauce</h3><p>Fresh Italian pasta with our own sauce, mixed with any veggies.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec menu" id="menu" aria-labelledby="menu-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display" id="menu-h">The menu</h2>
+      <p>Pick a section to see every item and price. Most dishes come in medium or large.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menu sections" id="tabs"></div>
+    <div id="panels"></div>
+  </div>
+</section>
+
+<section class="sec shakes" id="shakes" aria-labelledby="shakes-h">
+  <div class="wrap">
+    <div class="shake-photo">
+      <div class="frame"><img loading="lazy" src="https://images.unsplash.com/photo-1686638745403-d21193f16b2f?w=900&q=70&auto=format&fit=crop" alt="Strawberry milkshake topped with whipped cream" width="900" height="1125"></div>
+      <div class="sticker"><div>shakes from<strong>£3.50</strong></div></div>
+    </div>
+    <div>
+      <h2 class="display" id="shakes-h">Thick,<br><span>cold</span> &amp; sweet</h2>
+      <ul class="flavours">
+        <li><i style="background:#2B2523"></i>Oreo</li>
+        <li><i style="background:#FFE680"></i>Banana</li>
+        <li><i style="background:#B07A3F"></i>Ferrero Rocher</li>
+        <li><i style="background:#D99A3E"></i>Galaxy Caramel</li>
+        <li><i style="background:#F37C8E"></i>Strawberry</li>
+      </ul>
+      <div class="shake-prices">
+        <div><small>Medium</small><b>£3.50</b></div>
+        <div><small>Large</small><b>£4.50</b></div>
+        <div><small>Mix fruit mocktail</small><b>£4.00</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec visit" id="visit" aria-labelledby="visit-h">
+  <div class="wrap">
+    <div class="visit-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1760888548893-bc2f7e09e972?w=900&q=70&auto=format&fit=crop" alt="Hand holding a wrapped shawarma" width="900" height="1125"></div>
+    <div>
+      <h2 class="display" id="visit-h">Come hungry.</h2>
+      <p class="lede">Order at the counter, tell us your veggies, salad and sauce, and we’ll cook it fresh.</p>
+      <!-- Replace the three placeholders below with the shop's real details. -->
+      <div class="info">
+        <div><h3>Address</h3><p class="todo">Add shop address</p></div>
+        <div><h3>Opening hours</h3><p class="todo">Add opening hours</p></div>
+        <div><h3>Phone</h3><p class="todo">Add phone number</p></div>
+        <div><h3>Payment</h3><p>Prices in GBP. Ask in store for today’s options.</p></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-yolk" href="#menu">Browse the menu</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="foot">
-    <div>
-      <h2>Hungry? <span>Come in.</span></h2>
-      <p>Tell us your choice of veggies, salad and sauce at the counter and we’ll make it your way.</p>
+  <div class="wrap">
+    <p class="foot-word" aria-hidden="true">Bakes<span>Delight</span></p>
+    <div class="foot-row">
+      <span>© Bakes Delight. Prices may change.</span>
+      <span>Photos via <a href="https://unsplash.com" rel="noopener">Unsplash</a>, for illustration.</span>
     </div>
-    <a class="btn btn-yolk" href="#top">Back to top</a>
   </div>
-  <small>© Bakes Delight. Prices in GBP and may change; ask in store for today’s options.</small>
 </footer>
 
 <script>
+const IMG = id => `https://images.unsplash.com/photo-${id}?w=900&q=70&auto=format&fit=crop`;
 const MENU = [
-  { id: "breakfasts", title: "Breakfasts", note: "Includes your choice of options from the menu board.",
-    cols: ["Medium", "Large"], items: [
+  { id: "breakfasts", title: "Breakfasts", img: "1768634003098-9d5848d3b93f", alt: "Breakfast plate with eggs, sausages and beans",
+    note: "Includes your choice of options from the menu board.", cols: ["Medium", "Large"], items: [
     ["Late Breakfast Wrap", "Lamb sausage, beans, egg, hash brown & cheese", [5, 7]],
     ["Veggie Breakfast Wrap", "Veggie sausage, beans, egg & cheese", [5, 7]],
     ["Breakfast Panini", "Grilled eggs with lamb mince meat, beans & cheese", [5, 7]],
     ["Full Breakfast", "Grilled eggs with sausages, cheese, hash brown, beans, egg & toast", [7], true],
     ["Omelette", "Three eggs with cheese, beans, veggies & toast", [7], true],
   ]},
-  { id: "kebab", title: "Chicken grilled kebab", note: "Fresh chicken breast marinated in Turkish sauce, cooked on the grill with your choice of veggies.",
-    cols: ["Medium", "Large"], items: [
-    ["Wrap or Panini", "", [6, 7]],
-    ["With Rice", "", [7, 8]],
-    ["With Couscous", "", [7, 8]],
-    ["With Chips & Cheese", "", [7, 8]],
+  { id: "kebab", title: "Grilled kebab", img: "1670165088604-5a39f5c1be51", alt: "Grilled chicken with couscous and vegetables",
+    heading: "Chicken grilled kebab", note: "Fresh chicken breast marinated in Turkish sauce, cooked on the grill with your choice of veggies.", cols: ["Medium", "Large"], items: [
+    ["Chicken Grilled Kebab", "Wrap or panini", [6, 7]],
+    ["Chicken Grilled Kebab & Rice", "", [7, 8]],
+    ["Chicken Grilled Kebab & Couscous", "", [7, 8]],
+    ["Chicken Grilled Kebab with Chips & Cheese", "", [7, 8]],
   ]},
-  { id: "panini", title: "Panini", note: "Homemade Turkish bread with your choice of veggies, salad & sauce.",
-    extras: ["Extra cheese +£0.50", "Make it a meal +£2.50"], cols: ["Medium", "Large"], items: [
+  { id: "panini", title: "Panini", img: "1786412691936-ee19320efb5a", alt: "Toasted panini sandwich",
+    note: "Homemade Turkish bread with your choice of veggies, salad & sauce.", extras: ["Extra cheese +£0.50", "Make it a meal +£2.50"], cols: ["Medium", "Large"], items: [
     ["Chicken Shawarma", "", [5, 7]], ["Spicy Chicken", "", [5, 7]], ["Chicken Tikka", "", [5, 7]],
     ["BBQ Chicken", "", [5, 7]], ["Tandoori Chicken", "", [5, 7]], ["Lamb Mince Meat", "", [5, 7]],
     ["Mix Chicken & Mix Veggies", "", [6, 8]], ["Mix Lamb & Chicken Shawarma", "", [6, 8]],
     ["Lamb Shawarma", "", [6, 8]], ["Chicken with Egg & Cheese", "", [6, 8]],
     ["Lamb Mince Meat with Egg & Cheese", "", [6, 8]],
   ]},
-  { id: "wraps", title: "Wraps", note: "12\" tortilla with your choice of salad, veggies & sauce.",
-    extras: ["Make it a meal +£2.50"], cols: ["Price"], items: [
+  { id: "wraps", title: "Wraps", img: "1562059390-a761a084768e", alt: "Wraps filled with grilled chicken and salad",
+    note: "12\" tortilla with your choice of salad, veggies & sauce.", extras: ["Make it a meal +£2.50"], cols: ["Price"], items: [
     ["Chicken Shawarma Wrap", "", [5]], ["Lamb Shawarma Wrap", "", [6]], ["Chicken Strips Wrap", "", [5]],
     ["Spicy Chicken Wrap", "", [5]], ["BBQ Chicken Wrap", "", [5]], ["Chicken Tikka Wrap", "", [5]],
     ["Tandoori Chicken Wrap", "", [5]], ["Falafel Wrap", "", [5]], ["Grilled Egg & Cheese Wrap", "", [5]],
     ["Mix Lamb & Chicken Shawarma Wrap", "", [6]], ["Chicken & Rice Wrap", "", [6]],
     ["Spicy Couscous & Spicy Chicken Wrap", "", [6]], ["Grilled Chicken Kebab Wrap", "", [6]],
   ]},
-  { id: "shawarma", title: "Shawarma boxes", note: "Chicken or lamb, with your choice of veggies & sauces.",
-    cols: ["Medium", "Large"], items: [
+  { id: "shawarma", title: "Shawarma boxes", img: "1529006557810-274b9b2fc783", alt: "Shawarma with grilled meat and chips",
+    heading: "Chicken or lamb shawarma box", note: "With your choice of veggies & sauces.", cols: ["Medium", "Large"], items: [
     ["Chicken Shawarma with Chips", "", [6, 7]], ["Chicken Shawarma with Rice", "", [6, 7]],
     ["Mix Shawarma with Chips", "", [7, 8]], ["Lamb Shawarma with Chips", "", [7, 8]],
     ["Lamb Shawarma with Rice", "", [7, 8]],
   ]},
-  { id: "rice", title: "Rice or couscous", note: "Made fresh every day and suitable for vegetarians. Choose your veggies & sauce.",
-    cols: ["Medium", "Large"], items: [
+  { id: "rice", title: "Rice & couscous", img: "1680990999782-ba7fe26e4d0b", alt: "Falafel plate with salad",
+    heading: "Rice or couscous", note: "Made fresh every day and suitable for vegetarians. Choose your veggies & sauce.", cols: ["Medium", "Large"], items: [
     ["Falafel & Mix Vegetables", "", [6, 7]], ["Chicken Shawarma with Rice", "", [6, 7]],
     ["Chicken Shawarma with Couscous", "", [6, 7]], ["Lamb Shawarma with Rice", "", [7, 8]],
     ["Spicy Chicken with Spicy Couscous", "", [6, 7]], ["BBQ Chicken & Rice", "", [6, 7]],
     ["Grilled Chicken Kebab", "", [7, 8]],
   ]},
-  { id: "burgers", title: "Burgers", extras: ["Make it a meal +£2.50"], cols: ["Single", "Double"], items: [
+  { id: "burgers", title: "Burgers", img: "1757834787931-ddd70f3379a5", alt: "Burger with lettuce and tomato",
+    extras: ["Make it a meal +£2.50"], cols: ["Single", "Double"], items: [
     ["Cheese Burger", "", [4, 6]], ["Chicken Burger", "", [4, 6]],
     ["Chicken Burger with Cheese & Hash Brown", "", [4.5, 6.5]],
     ["Grilled Chicken Burger", "", [4, null]], ["Veggie Burger", "", [3.5, null]],
   ]},
-  { id: "pasta", title: "Pasta", note: "Freshly made Italian pasta with homemade sauce.", extras: ["Extra cheese +£0.50"],
-    cols: ["Medium", "Large"], items: [
+  { id: "pasta", title: "Pasta", img: "1555949258-eb67b1ef0ceb", alt: "Penne pasta in tomato sauce",
+    note: "Freshly made Italian pasta with homemade sauce.", extras: ["Extra cheese +£0.50"], cols: ["Medium", "Large"], items: [
     ["Veggie Pasta with Cheese", "", [5, 6]], ["Chicken Tikka Vegetable Pasta", "", [6, 7]],
     ["Lamb Mince Meat Pasta", "", [6, 7]], ["Spicy Chicken Pasta", "", [6, 7]],
     ["Chicken Shawarma Pasta", "Mix any veggies & cheese", [6, 7]],
     ["Lamb Shawarma Pasta", "Mix any veggies & cheese", [7, 8]],
   ]},
-  { id: "healthy", title: "Healthy eating", cols: ["Medium", "Large"], items: [
+  { id: "healthy", title: "Healthy eating", img: "1670165088604-5a39f5c1be51", alt: "Grilled chicken with vegetables",
+    cols: ["Medium", "Large"], items: [
     ["Chicken Shawarma with Salad", "", [5, 6]], ["Chicken Grilled Kebab with Mix Salad", "", [6, 7]],
     ["Falafel with Rice", "", [6, 7]], ["Falafel Wrap", "", [5], true], ["Mixed Salad", "", [2.5], true],
   ]},
-  { id: "shakes", title: "Milkshakes & mocktails", cols: ["Medium", "Large"], items: [
-    ["Milkshake", "Oreo, Banana, Ferrero Rocher, Galaxy Caramel or Strawberry", [3.5, 4.5]],
-    ["Mix Fruit Mocktail", "", [4], true],
-  ]},
-  { id: "drinks", title: "Cold drinks", note: "Every cold drink is £1.00.", drinks: [
-    ["Canned soft drinks (330ml)", ["Pepsi", "Pepsi Max", "Coca-Cola", "Fanta Orange", "Fanta Fruit Twist", "Fanta Lemon", "Tango Orange", "Tango Apple", "Tango Zero", "7Up", "Mirinda Orange", "Mirinda Strawberry", "Rubicon Mango", "Rubicon Passion", "Rio Tropical", "Vimto", "Dr Pepper"]],
-    ["Energy drinks", ["Red Bull (250ml)"]],
-    ["Juices & bottled drinks", ["Sunpride Tropical", "Ribena Blackcurrant", "Ayran yogurt drink", "Water (500ml)", "Bottled juices"]],
-  ]},
-  { id: "sides", title: "Pasties & sides", groups: [
+  { id: "drinks", title: "Drinks", img: "1686638745403-d21193f16b2f", alt: "Strawberry milkshake",
+    heading: "Shakes & drinks", note: "Every cold drink is £1.00.", drinks: true },
+  { id: "sides", title: "Pasties & sides", img: "1680990999782-ba7fe26e4d0b", alt: "Falafel with chips and salad",
+    groups: [
     { title: "Pasties", cols: ["Price"], items: [["Cheese & Onion Pasty", "", [2.4]], ["Vegetable Pasty", "", [2.4]]] },
     { title: "Sides", cols: ["Medium", "Large"], items: [
       ["Chips", "", [2, 3]], ["Cheese & Chips", "", [3, 4]], ["Potato Wedges", "", [3, 4]],
@@ -249,57 +498,77 @@ const MENU = [
     ]},
   ]},
 ];
+const DRINKS = [
+  ["Milkshakes", "M £3.50 / L £4.50", ["Oreo", "Banana", "Ferrero Rocher", "Galaxy Caramel", "Strawberry"]],
+  ["Mix Fruit Mocktail", "£4.00", []],
+  ["Canned soft drinks (330ml)", "£1.00", ["Pepsi", "Pepsi Max", "Coca-Cola", "Fanta Orange", "Fanta Fruit Twist", "Fanta Lemon", "Tango Orange", "Tango Apple", "Tango Zero", "7Up", "Mirinda Orange", "Mirinda Strawberry", "Rubicon Mango", "Rubicon Passion", "Rio Tropical", "Vimto", "Dr Pepper"]],
+  ["Energy drinks", "£1.00", ["Red Bull (250ml)"]],
+  ["Juices & bottled drinks", "£1.00", ["Sunpride Tropical", "Ribena Blackcurrant", "Ayran yogurt drink", "Water (500ml)", "Bottled juices"]],
+];
+const TICKER = ["Breakfast wraps from £5", "Make it a meal +£2.50", "All cold drinks £1", "Milkshakes from £3.50", "Rice & couscous made fresh daily", "Homemade Turkish bread"];
 
-const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-const gbp = n => n == null ? '<span class="na" aria-label="not available">–</span>' : "£" + n.toFixed(2);
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+const gbp = n => "£" + n.toFixed(2);
 
-function table(cols, items) {
-  const head = cols.map(c => `<th scope="col">${c}</th>`).join("");
-  const rows = items.map(([name, desc, prices, single]) => {
+function rows(cols, items) {
+  const n = cols.length;
+  const head = `<div class="rows-head" style="--cols:${n}"><span>${n === 1 ? "Item" : ""}</span>${cols.map(c => `<span>${c}</span>`).join("")}</div>`;
+  const body = items.map(([name, desc, prices, single]) => {
     let cells;
-    if (single && cols.length > 1) {
-      cells = `<td class="price" colspan="${cols.length}">${gbp(prices[0])}</td>`;
-    } else {
-      cells = cols.map((_, i) => `<td class="price">${gbp(prices[i] ?? null)}</td>`).join("");
-    }
-    return `<tr><td><span class="name">${esc(name)}</span>${desc ? `<span class="desc">${esc(desc)}</span>` : ""}</td>${cells}</tr>`;
+    if (single && n > 1) cells = `<span class="pill span">${gbp(prices[0])}</span>`;
+    else cells = cols.map((c, i) => prices[i] == null
+      ? `<span class="pill na" aria-label="${c}: not available">–</span>`
+      : `<span class="pill" aria-label="${c} ${gbp(prices[i])}">${gbp(prices[i])}</span>`).join("");
+    return `<div class="row" style="--cols:${n}"><span class="nm">${esc(name)}${desc ? `<span class="ds">${esc(desc)}</span>` : ""}</span>${cells}</div>`;
   }).join("");
-  return `<table class="items"><thead><tr><th scope="col"><span class="sr">Item</span></th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+  return head + body;
 }
 
-const main = document.getElementById("menu");
-const nav = document.getElementById("catlinks");
-main.innerHTML = MENU.map(s => {
-  let body;
-  if (s.drinks) {
-    body = `<div class="drinks-list">${s.drinks.map(([n, list]) =>
-      `<div class="drink"><span class="name">${esc(n)}</span><span class="price">£1.00</span><div class="chips">${list.map(x => `<span>${esc(x)}</span>`).join("")}</div></div>`).join("")}</div>`;
-  } else if (s.groups) {
-    body = s.groups.map(g => `<h3 class="subhead">${g.title}</h3>${table(g.cols, g.items)}`).join("");
-  } else {
-    body = table(s.cols, s.items);
-  }
-  return `<section class="section" id="${s.id}" aria-labelledby="h-${s.id}">
-    <div class="sec-head"><h2 id="h-${s.id}">${esc(s.title)}</h2>${s.note ? `<p>${esc(s.note)}</p>` : ""}
-    ${s.extras ? `<div class="extras">${s.extras.map(e => `<span class="extra">${esc(e)}</span>`).join("")}</div>` : ""}</div>
-    <div>${body}</div></section>`;
-}).join("");
-nav.innerHTML = MENU.map(s => `<li><a href="#${s.id}">${esc(s.title)}</a></li>`).join("");
+function drinks() {
+  return `<div class="drinks-grid">${DRINKS.map(([n, p, list]) => `<div class="drink-card"><header><h4>${esc(n)}</h4><span class="pill">${esc(p)}</span></header>${list.length ? `<div class="chips">${list.map(x => `<span>${esc(x)}</span>`).join("")}</div>` : ""}</div>`).join("")}</div>`;
+}
 
-// Highlight the section in view
-const links = [...nav.querySelectorAll("a")];
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    links.forEach(a => {
-      const on = a.getAttribute("href") === "#" + e.target.id;
-      a.classList.toggle("active", on);
-      if (on) a.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
-    });
+const tabs = document.getElementById("tabs");
+const panels = document.getElementById("panels");
+tabs.innerHTML = MENU.map((s, i) => `<button class="tab" role="tab" id="tab-${s.id}" aria-controls="panel-${s.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(s.title)}</button>`).join("");
+panels.innerHTML = MENU.map((s, i) => {
+  let body = s.drinks ? drinks()
+    : s.groups ? s.groups.map(g => `<h4 class="subhead">${g.title}</h4>${rows(g.cols, g.items)}`).join("")
+    : rows(s.cols, s.items);
+  return `<div class="panel" role="tabpanel" id="panel-${s.id}" aria-labelledby="tab-${s.id}" ${i ? "hidden" : ""}>
+    <div class="panel-side">
+      <div class="panel-img"><img loading="lazy" src="${IMG(s.img)}" alt="${esc(s.alt)}" width="900" height="720"></div>
+      <h3>${esc(s.heading || s.title)}</h3>
+      ${s.note ? `<p>${esc(s.note)}</p>` : ""}
+      ${s.extras ? `<div class="extras">${s.extras.map(e => `<span class="extra">${esc(e)}</span>`).join("")}</div>` : ""}
+    </div>
+    <div class="rows">${body}</div>
+  </div>`;
+}).join("");
+
+const tabEls = [...tabs.querySelectorAll(".tab")];
+function select(t, focus) {
+  tabEls.forEach(x => {
+    const on = x === t;
+    x.setAttribute("aria-selected", on);
+    x.tabIndex = on ? 0 : -1;
+    document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
   });
-}, { rootMargin: "-45% 0px -50% 0px" });
-document.querySelectorAll(".section").forEach(s => io.observe(s));
+  t.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+  if (focus) t.focus();
+}
+tabs.addEventListener("click", e => { const t = e.target.closest(".tab"); if (t) select(t); });
+tabs.addEventListener("keydown", e => {
+  const i = tabEls.indexOf(document.activeElement);
+  if (i < 0) return;
+  const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+  if (k) { e.preventDefault(); select(tabEls[(i + k + tabEls.length) % tabEls.length], true); }
+  if (e.key === "Home") { e.preventDefault(); select(tabEls[0], true); }
+  if (e.key === "End") { e.preventDefault(); select(tabEls[tabEls.length - 1], true); }
+});
+
+const tick = TICKER.map(t => `<span>${esc(t)}</span>`).join("");
+document.getElementById("ticker").innerHTML = tick + tick;
 </script>
-<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}</style>
 </body>
 </html>
